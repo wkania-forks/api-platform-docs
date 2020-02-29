@@ -5,7 +5,7 @@ implementation in your app. This page will guide you in handling file upload in
 your API, with the help of
 [VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle). It is
 recommended you [read the documentation of
-VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle/blob/master/Resources/doc/index.md)
+VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle/blob/master/docs/index.md)
 before proceeding. It will help you get a grasp on how the bundle works, and why we use it.
 
 ## Installing VichUploaderBundle
@@ -183,7 +183,7 @@ use ApiPlatform\Core\Util\RequestAttributesExtractor;
 use App\Entity\MediaObject;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Vich\UploaderBundle\Storage\StorageInterface;
 
@@ -203,7 +203,7 @@ final class ResolveMediaObjectContentUrlSubscriber implements EventSubscriberInt
         ];
     }
 
-    public function onPreSerialize(GetResponseForControllerResultEvent $event): void
+    public function onPreSerialize(ViewEvent $event): void
     {
         $controllerResult = $event->getControllerResult();
         $request = $event->getRequest();
